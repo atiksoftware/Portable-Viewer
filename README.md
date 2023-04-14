@@ -1,5 +1,9 @@
 # Portable Viewer: C# Image Viewer for PGM, PPM, and PBM Files
 
+| Source Image | Grayscale | Treshold |
+| ------- | ------- | ------- |
+| ![Source Image](Examples/source.jpg) | ![Grayscale](Examples/grayscale.jpg) | ![Treshold](Examples/treshold.jpg) |
+
 ## Description
 
 Portable Viewer is a C# application that allows users to view PGM (Portable Graymap), PPM (Portable Pixmap), and PBM (Portable Bitmap) image files. The project provides a straightforward and user-friendly interface for opening and viewing images in these formats. Portable Viewer enables users to convert image data into visual representations, providing a convenient way to visualize the contents of PGM, PPM, and PBM files.
@@ -29,6 +33,7 @@ Note: Admin privileges may be required for making registry changes during the in
 - Portable Pixmap Format (PPM).
 - Portable Bitmap Format (PBM);
 
+![Bytes](Examples/bytes.jpg)
 
 
 ### PGM (Portable Graymap)
