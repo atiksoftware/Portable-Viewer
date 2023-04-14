@@ -1,0 +1,9 @@
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\Release\Portable Viewer.exe
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\Release\Portable Viewer.pdb
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable Viewer.csproj.AssemblyReference.cache
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable_Viewer.Form1.resources
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable_Viewer.Properties.Resources.resources
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable Viewer.csproj.GenerateResource.cache
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable Viewer.csproj.CoreCompileInputs.cache
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable Viewer.exe
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Release\Portable Viewer.pdb

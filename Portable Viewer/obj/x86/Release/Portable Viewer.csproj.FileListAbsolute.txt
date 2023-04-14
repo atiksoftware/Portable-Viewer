@@ -1,0 +1,25 @@
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\Portable Viewer.exe
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\Portable Viewer.pdb
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\mscorlib.dll
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\tr\mscorlib.resources.dll
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\sortkey.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\sorttbls.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\big5.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\bopomofo.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\ksc.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\prc.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\prcp.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\xjis.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\normidna.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\normnfc.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\normnfd.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\normnfkc.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\x86\Release\normnfkd.nlp
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable Viewer.csproj.AssemblyReference.cache
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable_Viewer.Form1.resources
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable_Viewer.Properties.Resources.resources
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable Viewer.csproj.GenerateResource.cache
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable Viewer.csproj.CoreCompileInputs.cache
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable Viewer.csproj.CopyComplete
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable Viewer.exe
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\x86\Release\Portable Viewer.pdb
