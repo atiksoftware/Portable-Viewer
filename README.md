@@ -17,6 +17,8 @@ Portable Viewer is a C# application that allows users to view PGM (Portable Gray
 
 Portable Viewer is a handy tool for developers and users who need to view PGM, PPM, and PBM images and inspect their contents. With its straightforward interface and image conversion capabilities, Portable Viewer makes it easy to visualize the contents of these image files.
 
+![Screenshot](Examples/screenshot.jpg)
+
 ## Installation
 
 1. Download the Portable Viewer executable (`.exe`) file.
@@ -33,7 +35,7 @@ Note: Admin privileges may be required for making registry changes during the in
 - Portable Pixmap Format (PPM).
 - Portable Bitmap Format (PBM);
 
-![Bytes](Examples/bytes.jpg)
+![Bytes](Examples/bytes.jpg) 
 
 
 ### PGM (Portable Graymap)
