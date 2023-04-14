@@ -54,7 +54,7 @@ namespace Portable_Viewer {
         }
 
         private void Open(string path) {
-
+            this.Text = "Opening...";
             try
             {
                 if(!System.IO.File.Exists(path))
