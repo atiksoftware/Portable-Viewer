@@ -143,8 +143,8 @@ Portable Viewer supports opening and viewing images in PBM, PGM, and PPM file fo
 
 
 ## Meta Data
-Atiksoftware Corporation  
-https://www.atiksoftware.com 
+Atiksoftware Corporation
+atiksoftware@gmail.com
 
 
 ## License
