@@ -140,3 +140,17 @@ P4
 
 
 Portable Viewer supports opening and viewing images in PBM, PGM, and PPM file formats. The application provides a simple and user-friendly interface for visualizing the contents of these image files, making it convenient for users to work with these common image formats.
+
+
+## Meta Data
+Atiksoftware Corporation  
+https://www.atiksoftware.com 
+
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+## Acknowledgments
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
