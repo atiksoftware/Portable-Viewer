@@ -6,9 +6,7 @@ namespace Portable_Viewer {
     public class Parser {
 
         public byte[] buffer;
-        public int cursor;
-        
-        char[] separators = { ' ', '\t', '\r', '\n' };
+        public int cursor; 
 
         public Parser(byte[] buffer) {
             this.buffer = buffer;
