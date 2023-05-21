@@ -7,3 +7,4 @@ C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Debug\Portable 
 C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Debug\Portable Viewer.csproj.CoreCompileInputs.cache
 C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Debug\Portable Viewer.exe
 C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\obj\Debug\Portable Viewer.pdb
+C:\Users\Amiral\source\repos\Portable Viewer\Portable Viewer\bin\Debug\Portable Viewer.exe.config

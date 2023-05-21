@@ -1,58 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Text;
 
 namespace Portable_Viewer {
     public class PGM : PM {  
 
         public PGM(string path) : base(path) { }
-
-        override public void Parse() { 
-            magic = ReadToEndOfLine();
+ 
+        override public void Load() { 
+            magic = parser.ReadString();
             if(magic != "P2" && magic != "P5") throw new Exception("Not supported PGM format. Only P2 and P5 are supported.");
-            if(buffer[cursor] == '#') comment = ReadToEndOfLine();
 
-            string[] size = ReadToEndOfLine().Split(' ');
-            width = int.Parse(size[0]);
-            height = int.Parse(size[1]);
+            width = parser.ReadInt();
+            height = parser.ReadInt();
+            maxval = parser.ReadInt();
 
-            maxval = int.Parse(ReadToEndOfLine());
-            
             switch (magic) {
                 case "P2":
-                    Parse_P2();
+                    values = parser.ReadBytesByInts(width * height);
                     break;
                 case "P5":
-                    Parse_P5();
+                    values = parser.ReadBytes(width * height);
                     break;
             }
-        }
+            
+            if(maxval != 255) Normalize();
+ 
+            Image = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 
-        void Parse_P2() {  
-            Image = new Bitmap(width, height);
-            int value = 0;
-            string[] values;
-            for (int y = 0; y < height; y++) {
-                values = ReadToEndOfLine().Split(' ');
-                for (int x = 0; x < width; x++) { 
-                    value = (int)(int.Parse(values[x]) * 255.0 / maxval);
-                     Image.SetPixel(x, y, Color.FromArgb(value, value, value)); 
-                }
-                OnProgressChanged((int)(100.0 * y / height));
-            }
-        }
+            BitmapData bitmapData = Image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.WriteOnly, Image.PixelFormat);
+            IntPtr ptr = bitmapData.Scan0;
 
-        void Parse_P5() {  
-            Image = new Bitmap(width, height);
-            int value = 0;
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) { 
-                    value = (int)(buffer[cursor++] * 255.0 / maxval);
-                    Image.SetPixel(x, y, Color.FromArgb(value, value, value)); 
-                }
-                OnProgressChanged((int)(100.0 * y / height));
+            for (int i = 0; i < values.Length; i++) { 
+                System.Runtime.InteropServices.Marshal.WriteByte(ptr, i * 3, values[i]);
+                System.Runtime.InteropServices.Marshal.WriteByte(ptr, i * 3 + 1, values[i]);
+                System.Runtime.InteropServices.Marshal.WriteByte(ptr, i * 3 + 2, values[i]);
             }
-        } 
+
+            Image.UnlockBits(bitmapData);
+            
+        }  
     }
 }

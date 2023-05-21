@@ -16,8 +16,7 @@ namespace Portable_Viewer {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e) { 
-            progressbar.Visible = false; 
+        private void Form1_Load(object sender, EventArgs e) {  
             
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(Form1_DragEnter);
@@ -76,23 +75,13 @@ namespace Portable_Viewer {
                     default:
                         throw new Exception("Not supported file format."); 
                 }
-                
-                progressbar.Visible = true; 
-                pm.Progress += (object sender, int progress) => { 
-                    progressbar.BeginInvoke((MethodInvoker)delegate() {
-                        progressbar.Value = progress;
-                    });
-                };
+                 
 
                 Thread t = new Thread(() => {
-                    pm.Parse(); 
+                    pm.Load(); 
                     picturebox.BeginInvoke((MethodInvoker)delegate() {
-                        picturebox.Image = pm.Image;
-                        progressbar.Visible = false;
-                        if(pm.comment != null)
-                            this.Text = pm.comment + " - " + appName;
-                        else
-                            this.Text = System.IO.Path.GetFileName(path) + " - " + appName;
+                        picturebox.Image = pm.Image; 
+                        this.Text = System.IO.Path.GetFileName(path) + " - " + appName;
                     });
                 });
 

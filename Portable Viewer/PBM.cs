@@ -2,56 +2,43 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Portable_Viewer {
     public class PBM : PM {
         
         public PBM(string path) : base(path) { }
 
-        override public void Parse() { 
-            magic = ReadToEndOfLine();
+        override public void Load() { 
+            magic = parser.ReadString();
             if(magic != "P1" && magic != "P4") throw new Exception("Not supported PBM format. Only P1 and P4 are supported.");
-            if(buffer[cursor] == '#') comment = ReadToEndOfLine();
 
-            string[] size = ReadToEndOfLine().Split(' ');
-            width = int.Parse(size[0]);
-            height = int.Parse(size[1]); 
-            
+            width = parser.ReadInt();
+            height = parser.ReadInt(); 
+
             switch (magic) {
                 case "P1":
-                    Parse_P1();
+                    values = parser.ReadBytesByInts(width * height );
                     break;
                 case "P4":
-                    Parse_P4();
+                    values = parser.ReadBytesByBits(width * height );
                     break;
-            }
-        }
+            } 
+ 
+            Image = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 
-        void Parse_P1() {  
-            Image = new Bitmap(width, height);
-            int value = 0;
-            string[] values;
-            for (int y = 0; y < height; y++) {
-                values = ReadToEndOfLine().Split(' ');
-                for (int x = 0; x < width; x++) { 
-                    value = int.Parse(values[x]) == 0 ? 255 : 0;
-                    Image.SetPixel(x, y, Color.FromArgb(value, value, value)); 
-                }
-                OnProgressChanged((int)(100.0 * y / height));
+            BitmapData bitmapData = Image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.WriteOnly, Image.PixelFormat);
+            IntPtr ptr = bitmapData.Scan0;
+            byte value = 0;
+            for (int i = 0; i < values.Length; i++) {
+                value = values[i] == 0 ? (byte)255 : (byte)0;
+                System.Runtime.InteropServices.Marshal.WriteByte(ptr, i * 3 + 0, value);
+                System.Runtime.InteropServices.Marshal.WriteByte(ptr, i * 3 + 1, value);
+                System.Runtime.InteropServices.Marshal.WriteByte(ptr, i * 3 + 2, value); 
             }
-        }
 
-        void Parse_P4() {  
-            Image = new Bitmap(width, height);
-            int value = 0;
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) { 
-                    value = (buffer[cursor] & (1 << (7 - x % 8))) == 0 ? 255 : 0;
-                    Image.SetPixel(x, y, Color.FromArgb(value, value, value)); 
-                    if(x % 8 == 7) cursor++;
-                }
-                OnProgressChanged((int)(100.0 * y / height));
-            }
-        }
+            Image.UnlockBits(bitmapData);
+            
+        }   
     }
 }

@@ -1,62 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Text;
 
 namespace Portable_Viewer {
     public class PPM : PM {
 
         public PPM(string path) : base(path) { }
+  
+        override public void Load() { 
+            magic = parser.ReadString();
+            if(magic != "P3" && magic != "P6") throw new Exception("Not supported PPM format. Only P3 and P6 are supported.");
 
-        override public void Parse() {
-            magic = ReadToEndOfLine();
-            if (magic != "P3" && magic != "P6") throw new Exception("Not supported PPM format. Only P3 and P6 are supported.");
-            if (buffer[cursor] == '#') comment = ReadToEndOfLine();
-
-            string[] size = ReadToEndOfLine().Split(' ');
-            width = int.Parse(size[0]);
-            height = int.Parse(size[1]);
- 
-            maxval = int.Parse(ReadToEndOfLine());
+            width = parser.ReadInt();
+            height = parser.ReadInt();
+            maxval = parser.ReadInt();
 
             switch (magic) {
                 case "P3":
-                    Parse_P3();
+                    values = parser.ReadBytesByInts(width * height * 3);
                     break;
                 case "P6":
-                    Parse_P6();
+                    values = parser.ReadBytes(width * height * 3);
                     break;
             }
-        }
+            
+            if(maxval != 255) Normalize();
+ 
+            Image = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 
-        void Parse_P3() {
-            Image = new Bitmap(width, height);
-            int r = 0, g = 0, b = 0;
-            string[] values;
-            for (int y = 0; y < height; y++) {
-                values = ReadToEndOfLine().Split(' ');
-                for (int x = 0; x < width; x++) {
-                    r = (int)(int.Parse(values[x * 3]) * 255.0 / maxval);
-                    g = (int)(int.Parse(values[x * 3 + 1]) * 255.0 / maxval);
-                    b = (int)(int.Parse(values[x * 3 + 2]) * 255.0 / maxval);
-                    Image.SetPixel(x, y, Color.FromArgb(r, g, b));
-                }
-                OnProgressChanged((int)(100.0 * y / height));
-            }
-        }
+            BitmapData bitmapData = Image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.WriteOnly, Image.PixelFormat);
+            IntPtr ptr = bitmapData.Scan0;
 
-        void Parse_P6() {
-            Image = new Bitmap(width, height);
-            int r = 0, g = 0, b = 0;
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) {
-                    r = (int)(buffer[cursor++] * 255.0 / maxval);
-                    g = (int)(buffer[cursor++] * 255.0 / maxval);
-                    b = (int)(buffer[cursor++] * 255.0 / maxval);
-                    Image.SetPixel(x, y, Color.FromArgb(r, g, b));
-                }
-                OnProgressChanged((int)(100.0 * y / height));
+            for (int i = 0; i < values.Length / 3; i++) {  
+                System.Runtime.InteropServices.Marshal.WriteInt32(
+                    ptr, i * 4, 
+                    (255 << 24) | (values[i * 3 + 0] << 16) | (values[i * 3 + 1] << 8) | (values[i * 3 + 2] << 0)
+                ); 
             }
-        }
+
+            Image.UnlockBits(bitmapData); 
+            
+        }  
     }
 }

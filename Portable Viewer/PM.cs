@@ -6,44 +6,28 @@ using System.Text;
 namespace Portable_Viewer {
     public class PM {
         public byte[] buffer;
-        public int cursor = 0;
+        public Parser parser;
   
-        public string magic;
-        public string comment;
+        public string magic; 
         public int width;
         public int height; 
         public int maxval;
+        public byte[] values;
 
-        public Bitmap Image;
-
-        public delegate void ProgressChangedEventHandler(object sender, int progress);
-        public event ProgressChangedEventHandler Progress;
+        public Bitmap Image; 
 
         public PM(string path) {
             buffer = System.IO.File.ReadAllBytes(path); 
+            parser = new Parser(buffer);
         }
+ 
+        public virtual void Load() { }
+         
 
-        public string ReadToEndOfLine() { 
-            int nextEOLPos = cursor;
-            while (true) {
-                if (buffer[nextEOLPos] == '\n') {
-                    int nextCursor = nextEOLPos + 1;
-                    if(buffer[nextEOLPos - 1] == '\r')
-                        nextEOLPos--;
-                    
-                    string result = Encoding.ASCII.GetString(buffer, cursor, nextEOLPos - cursor);
-                    cursor = nextCursor;
-                    return result;
-                }
-                nextEOLPos++;
-            } 
-        }
-
-        public virtual void Parse() { }
-
-        protected virtual void OnProgressChanged(int progress) {
-            if (Progress != null) {
-                Progress(this, progress);
+        
+        public void Normalize(){
+            for (int i = 0; i < values.Length; i++) {
+                values[i] = (byte)(values[i] * 255.0 / maxval);
             }
         }
     }

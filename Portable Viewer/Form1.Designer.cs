@@ -25,7 +25,6 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.picturebox = new System.Windows.Forms.PictureBox();
-            this.progressbar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,20 +38,11 @@
             this.picturebox.TabIndex = 0;
             this.picturebox.TabStop = false;
             // 
-            // progressbar
-            // 
-            this.progressbar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressbar.Location = new System.Drawing.Point(0, 427);
-            this.progressbar.Name = "progressbar";
-            this.progressbar.Size = new System.Drawing.Size(800, 23);
-            this.progressbar.TabIndex = 1;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.progressbar);
             this.Controls.Add(this.picturebox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -66,7 +56,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox picturebox;
-        private System.Windows.Forms.ProgressBar progressbar;
     }
 }
 
